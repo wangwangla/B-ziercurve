@@ -37,11 +37,13 @@ public class ShapeDraw extends Actor {
         Gdx.gl20.glLineWidth(1 / Constant.camera.zoom);
         sr.begin(ShapeRenderer.ShapeType.Line);
         for (Vector2 vector2 : array) {
-            sr.circle(vector2.x, vector2.y, 10);
+//            sr.circle(vector2.x, vector2.y, 10);
+            sr.rect(vector2.x,vector2.y,10,1);
         }
         for (Vector2 vector2 : line) {
             if (lastPosition!=null){
-                sr.line(vector2,lastPosition);
+//                sr.line(vector2,lastPosition);
+                sr.rectLine(vector2,lastPosition,10);
             }
             lastPosition = vector2;
         }
@@ -51,3 +53,28 @@ public class ShapeDraw extends Actor {
         batch.begin();
     }
 }
+
+//    @Override
+//    public void create() {
+//        w = Gdx.graphics.getWidth();
+//        batch = new SpriteBatch();
+//        pixmap = new Pixmap(2 * w, 2 * w, Pixmap.Format.RGBA8888);
+//        pixmap.setColor(Color.BLACK);
+//
+//        pixmap.drawCircle(w, w, w);
+//        texture = new Texture(pixmap);
+//        pixmap.dispose();
+//
+//        sprite = new Sprite(texture);
+//    }
+//
+//    @Override
+//    public void render() {
+//        Gdx.gl.glClearColor(1, 1, 1, 1);
+//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+//
+//        batch.begin();
+//        sprite.setPosition(-w / 2, -w);
+//        sprite.draw(batch);
+//        batch.end();
+//    }

@@ -16,9 +16,13 @@
 
 package com.badlogic.gdx.math;
 
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.utils.Array;
+
 /** Takes a linear value in the range of 0-1 and outputs a (usually) non-linear, interpolated value.
  * @author Nathan Sweet */
 public abstract class Interpolation {
+
 	/** @param a Alpha value between 0 and 1. */
 	abstract public float apply (float a);
 
@@ -189,7 +193,7 @@ public abstract class Interpolation {
 		}
 	}
 
-	static public class PowOut extends Pow {
+    static public class PowOut extends Pow {
 		public PowOut (int power) {
 			super(power);
 		}
