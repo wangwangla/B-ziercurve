@@ -22,11 +22,10 @@ public class LoadingScreen extends BaseScreen {
         super.showView();
         GameView view = new GameView();
         addActor(view);
-
         addListener(new ClickListener(){
-
             @Override
-            public void clicked(InputEvent event, float x, float y) { super.clicked(event, x, y);
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
             }
         });
     }

@@ -19,6 +19,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import wk.demo.block.Bse;
+import wk.demo.block.BseInterpolation;
 import wk.demo.block.constant.Constant;
 import wk.demo.block.utils.ShapeDraw;
 
@@ -28,9 +29,10 @@ public class GameView extends Group {
         setDebug(true);
         setSize(Constant.width,720);
         xx();
-        addListener(new ClickListener(){
+        this.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if (y>720)return;
                 super.clicked(event, x, y);
                 long l = System.currentTimeMillis() - lastTime;
                 lastTime = System.currentTimeMillis();
@@ -51,32 +53,38 @@ public class GameView extends Group {
         });
 
         Image image = new Image(new Texture("white_squ.png"));
-        image.setPosition(getWidth() - 60,30);
+        image.setPosition(getWidth() - 260,830);
         addActor(image);
 
 
         Image image1 = new Image(new Texture("white_squ.png"));
         addActor(image1);
+        image1.setY(830);
+
+
+        Image image3 = new Image(new Texture("white_squ.png"));
+        addActor(image3);
+        image3.setY(830);
+        image3.setX(0,Align.center);
+        image3.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+               image1.setScale(1,1);
+            }
+        });
 
         image.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                image1.addAction(Actions.scaleTo(3,3,3, new Bse(array1)));
+//                image1.addAction(Actions.scaleTo(3,3,3, new Bse(array1)));
+                BseInterpolation bseInterpolation = new BseInterpolation();
+                bseInterpolation.setCurve(0.25F, 0, 0.75F, 1F);
+                image1.addAction(Actions.scaleTo(3,3,3, bseInterpolation));
                 save();
             }
         });
-//        Image button = new Image(new Texture("white_squ.png"));
-//        addActor(button);
-//        button.setX(Constant.width, Align.right);
-//        button.addListener(new ClickListener(){
-//            @Override
-//            public void clicked(InputEvent event, float x, float y) {
-//                super.clicked(event, x, y);
-//                start = true;
-//            }
-//        });
-
     }
     Image image;
     private boolean start = false;
@@ -156,10 +164,9 @@ public class GameView extends Group {
     public void save(){
         try {
             FileWriter stream = new FileWriter(new File("./text.txt"));
-            for (Vector2 vector2 : array1) {
+            for (Vector2 vector2 : controlPoint) {
                 stream.write(vector2.x+", "+vector2.y+" ");
             }
-            System.out.println(array1.size);
             stream.flush();
         } catch (FileNotFoundException e) {
             e.printStackTrace();

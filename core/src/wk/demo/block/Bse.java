@@ -13,7 +13,6 @@ public class Bse extends Interpolation{
 
     public float apply (float a) {
         int v = (int)(a * 100.0F);
-        System.out.println(array.get(v).y);
         return array.get(v).y/720;
     }
 }
