@@ -45,7 +45,7 @@ public void jisuan(Array<Vector2> controlPoint){
 
 ```java
 public float apply (float a) {
-    var num = array1.get(array1.size * a);
+    var num = array1.get((array1.size-1) * a);
     value = num / height ;
 }
 ```
@@ -77,10 +77,70 @@ public class Bse extends Interpolation{
 }
 ```
 
+将每一个点的坐标都记录下来，然后根据百分比再这个区域中取值。
 
 
+## 使用spine计算动画
+
+```java
+public class BseInterpolation extends Interpolation {
+    private float[] curves = new float[18];
+
+    @Override
+    public float apply(float a) {
+        return getCurvePercent(a);
+    }
+
+    public void setCurve (float cx1, float cy1, float cx2, float cy2) {
+        float tmpx = (-cx1 * 2 + cx2) * 0.03f, tmpy = (-cy1 * 2 + cy2) * 0.03f;
+        float dddfx = ((cx1 - cx2) * 3 + 1) * 0.006f, dddfy = ((cy1 - cy2) * 3 + 1) * 0.006f;
+        float ddfx = tmpx * 2 + dddfx, ddfy = tmpy * 2 + dddfy;
+        float dfx = cx1 * 0.3f + tmpx + dddfx * 0.16666667f, dfy = cy1 * 0.3f + tmpy + dddfy * 0.16666667f;
+        float x = dfx;
+        float y = dfy;
+
+        float curves[] = this.curves;
+        int i = 0;
+        for (int n = i + 19 - 1; i < n; i += 2) {
+            curves[i] = x;
+            curves[i + 1] = y;
+            dfx += ddfx;
+            dfy += ddfy;
+            ddfx += dddfx;
+            ddfy += dddfy;
+            x += dfx;
+            y += dfy;
+        }
+    }
 
 
+//
+//
+    public float getCurvePercent (float percent) {
+        percent = MathUtils.clamp(percent, 0, 1);
+        float[] curves = this.curves;
+        int i = 0;
+        float x = 0;
+        for (int start = i, n = i + 19 - 1; i < n; i += 2) {
+            x = curves[i];
+            if (x >= percent) {
+                if (i == start) return curves[i + 1] * percent / x; // First point is 0,0.
+                float prevX = curves[i - 2], prevY = curves[i - 1];
+                return prevY + (curves[i + 1] - prevY) * (percent - prevX) / (x - prevX);
+            }
+        }
+        float y = curves[i - 1];
+        float v = y + (1 - y) * (percent - x) / (1 - x);
+        System.out.println(v);
+        return v;
+    }
+}
+
+```
+
+
+set方法是传递进去的参数，spine动画json文件中的，让每次调用一次apply得到一个百分比，然后通过百分比来得到数组中的值。
+这种方式每次记录点的个数是19，和第一种的实现方式相同，为什么是19个点，我也不知道，应该是对于的点，没必要把。
 
 
 

@@ -1,7 +1,24 @@
 package wk.demo.block;
 
+import com.badlogic.gdx.utils.Array;
+
 public class Main {
     public static void main(String[] args) {
+        duratontest();
+    }
+
+    private static void duratontest() {
+        Array<Integer> array = new Array<>();
+        float time[] = {0.03f,0.04f,0.1F,0.5F,1F};
+        float duration = 0;
+        for (int i = 5; i > 0; i--) {
+            array.add(i);
+            duration = Math.max(duration, time[i-1]);
+        }
+        System.out.println("====================");
+    }
+
+    private static void bziercure() {
         float cx1 = 0.25F;
         float cy1 = 0;
         float cx2 = 0.75F;

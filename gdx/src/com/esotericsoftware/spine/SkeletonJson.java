@@ -82,6 +82,10 @@ public class SkeletonJson {
 	private float scale = 1;
 	private Array<LinkedMesh> linkedMeshes = new Array();
 
+	public SkeletonJson(){
+		attachmentLoader = new AtlasAttachmentLoader();
+	}
+
 	public SkeletonJson (TextureAtlas atlas) {
 		attachmentLoader = new AtlasAttachmentLoader(atlas);
 	}
@@ -466,6 +470,7 @@ public class SkeletonJson {
 			if (slot == null) throw new SerializationException("Slot not found: " + slotMap.name);
 			for (JsonValue timelineMap = slotMap.child; timelineMap != null; timelineMap = timelineMap.next) {
 				String timelineName = timelineMap.name;
+				//再运行的过程中切换图片
 				if (timelineName.equals("attachment")) {
 					AttachmentTimeline timeline = new AttachmentTimeline(timelineMap.size);
 					timeline.slotIndex = slot.index;

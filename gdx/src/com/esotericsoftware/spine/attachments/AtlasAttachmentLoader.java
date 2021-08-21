@@ -43,6 +43,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 public class AtlasAttachmentLoader implements AttachmentLoader {
 	private TextureAtlas atlas;
 
+	public AtlasAttachmentLoader(){}
+
 	public AtlasAttachmentLoader (TextureAtlas atlas) {
 		if (atlas == null) throw new IllegalArgumentException("atlas cannot be null.");
 		this.atlas = atlas;

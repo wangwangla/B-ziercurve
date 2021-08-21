@@ -41,7 +41,7 @@ import android.view.inputmethod.InputConnection;
  * <p/>
  * - The class must select the surface's format, then choose an EGLConfig that matches it exactly (with regards to
  * red/green/blue/alpha channels bit depths). Failure to do so would result in an EGL_BAD_MATCH error. */
-public class GLSurfaceView20API18 extends GLSurfaceViewAPI18 {
+public class GLSurfaceView20API18 extends GLSurfaceViewAPI18{
 	static String TAG = "GL2JNIView";
 	private static final boolean DEBUG = false;
 

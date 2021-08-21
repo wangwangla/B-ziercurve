@@ -11,7 +11,6 @@ public class BseInterpolation extends Interpolation {
         return getCurvePercent(a);
     }
 
-
     public void setCurve (float cx1, float cy1, float cx2, float cy2) {
         float tmpx = (-cx1 * 2 + cx2) * 0.03f, tmpy = (-cy1 * 2 + cy2) * 0.03f;
         float dddfx = ((cx1 - cx2) * 3 + 1) * 0.006f, dddfy = ((cy1 - cy2) * 3 + 1) * 0.006f;
