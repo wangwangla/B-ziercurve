@@ -13,7 +13,5 @@ public interface Timeline {
                        float alpha,
                        Animation.MixPose pose,
                        Animation.MixDirection direction);
-
-    public int getPropertyId ();
 }
 
