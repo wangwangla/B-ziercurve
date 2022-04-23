@@ -15,7 +15,7 @@ public class Main {
             array.add(i);
             duration = Math.max(duration, time[i-1]);
         }
-        System.out.println("====================");
+
     }
 
     private static void bziercure() {
