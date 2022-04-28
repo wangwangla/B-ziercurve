@@ -14,15 +14,20 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 import wk.demo.block.BseInterpolation;
 import wk.demo.block.bezier.RBBezierUtil;
 import wk.demo.block.constant.Constant;
+import wk.demo.block.screen.utils.CatmullRomSpline;
+import wk.demo.block.screen.utils.Vector3;
 import wk.demo.block.utils.ShapeDraw;
 
 public class GameView extends Group {
     private ShapeDraw shapeDraw;
     public GameView(){
+
+        catmullRomSpline = new CatmullRomSpline();
         setDebug(true);
         setSize(Constant.width,720);
         defacultLine();
@@ -82,6 +87,7 @@ public class GameView extends Group {
                 save();
             }
         });
+
     }
     Image image;
     private boolean start = false;
@@ -132,7 +138,19 @@ public class GameView extends Group {
         shapeDraw.setLine(controlPoint);
     }
 
+    CatmullRomSpline catmullRomSpline;
     public void jisuan(Array<Vector2> controlPoint){
+
+        catmullRomSpline.getControlPoints().clear();
+        for (Vector2 vector2 : controlPoint) {
+            catmullRomSpline.add(new Vector3(vector2.x,vector2.y,0));
+        }
+        List<Vector3> path = catmullRomSpline.getPath(10);
+        for (int i = 0; i < path.size(); i++) {
+            array1.add(new Vector2(path.get(i).x,path.get(i).y));
+        }
+
+
 //        int n = controlPoint.size - 1; //
 //        int i, r;
 //        float u;
@@ -165,51 +183,52 @@ public class GameView extends Group {
 //            }
 //        }
 
-        System.out.println("================");
-
-        Vector2 rp[] = new Vector2[controlPoint.size];
-        for (int i = 0; i < controlPoint.size; i++) {
-            rp[i] = controlPoint.get(i);
-        }
 
 
-        Vector2 p0 = new Vector2(0, 0);
-        Vector2 p1 = new Vector2(0, 0);
-        Vector2 p2 = new Vector2(0, 0);
-
-        for (int j = 0; j < rp.length - 2; ++j) {
-            if (j == 0) {
-                p0.x = rp[0].x;
-                p0.y = rp[0].y;
-            } else {
-                p0.x = (rp[j].x + rp[j + 1].x) / 2;
-                p0.y = (rp[j].y + rp[j + 1].y) / 2;
-            }
-            p1.x = rp[j + 1].x;
-            p1.y = rp[j + 1].y;
-            if (j <= rp.length - 4) {
-                p2.x = (rp[j + 1].x + rp[j + 2].x) / 2;
-                p2.y = (rp[j + 1].y + rp[j + 2].y) / 2;
-            } else {
-                p2.x = rp[j + 2].x;
-                p2.y = rp[j + 2].y;
-            }
-            if ((p2.x - p0.x) * (p1.y - p0.y) - (p2.y - p0.y) * (p1.x - p0.x) == 0) {
-                p1.x++;
-                p1.y++;
-            }
-            int steps = RBBezierUtil.init(p0, p1, p2, 1);
-            if (steps == 0) {
-//                LogU.log("steps:" + steps + " " + p0 + p1 + p2);
-            }
-            for (int m = 1; m <= steps; ++m) {
-                float[] data = RBBezierUtil.getAnchorPointRB(m,false);
-                if (data != null) {
-                    array1.add(new Vector2(data[0],data[1]));
-                }
-            }
-        }
-
+//        System.out.println("================");
+//
+//        Vector2 rp[] = new Vector2[controlPoint.size];
+//        for (int i = 0; i < controlPoint.size; i++) {
+//            rp[i] = controlPoint.get(i);
+//        }
+//
+//
+//        Vector2 p0 = new Vector2(0, 0);
+//        Vector2 p1 = new Vector2(0, 0);
+//        Vector2 p2 = new Vector2(0, 0);
+//
+//        for (int j = 0; j < rp.length - 2; ++j) {
+//            if (j == 0) {
+//                p0.x = rp[0].x;
+//                p0.y = rp[0].y;
+//            } else {
+//                p0.x = (rp[j].x + rp[j + 1].x) / 2;
+//                p0.y = (rp[j].y + rp[j + 1].y) / 2;
+//            }
+//            p1.x = rp[j + 1].x;
+//            p1.y = rp[j + 1].y;
+//            if (j <= rp.length - 4) {
+//                p2.x = (rp[j + 1].x + rp[j + 2].x) / 2;
+//                p2.y = (rp[j + 1].y + rp[j + 2].y) / 2;
+//            } else {
+//                p2.x = rp[j + 2].x;
+//                p2.y = rp[j + 2].y;
+//            }
+//            if ((p2.x - p0.x) * (p1.y - p0.y) - (p2.y - p0.y) * (p1.x - p0.x) == 0) {
+//                p1.x++;
+//                p1.y++;
+//            }
+//            int steps = RBBezierUtil.init(p0, p1, p2, 1);
+//            if (steps == 0) {
+////                LogU.log("steps:" + steps + " " + p0 + p1 + p2);
+//            }
+//            for (int m = 1; m <= steps; ++m) {
+//                float[] data = RBBezierUtil.getAnchorPointRB(m,false);
+//                if (data != null) {
+//                    array1.add(new Vector2(data[0],data[1]));
+//                }
+//            }
+//        }
     }
 
 
