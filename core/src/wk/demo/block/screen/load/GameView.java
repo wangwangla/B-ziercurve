@@ -140,13 +140,13 @@ public class GameView extends Group {
 
     CatmullRomSpline catmullRomSpline;
     public void jisuan(Array<Vector2> controlPoint){
-        mathod1(controlPoint);
-        mathod2(controlPoint);
-        mathod3(controlPoint);
-        mathod5(controlPoint);
+//        mathod1(controlPoint);
+//        mathod2(controlPoint);
+//        mathod3(controlPoint);
+        mathod4(controlPoint);
     }
 
-    private void mathod5(Array<Vector2> controlPoint) {
+    private void mathod4(Array<Vector2> controlPoint) {
         Vector2 rp[] = new Vector2[controlPoint.size];
         for (int i = 0; i < controlPoint.size; i++) {
             rp[i] = controlPoint.get(i);
