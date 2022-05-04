@@ -23,10 +23,20 @@ import wk.demo.block.screen.utils.CatmullRomSpline;
 import wk.demo.block.screen.utils.Vector3;
 import wk.demo.block.utils.ShapeDraw;
 
+/**
+ * 展示线
+ */
 public class GameView extends Group {
     private ShapeDraw shapeDraw;
-    public GameView(){
+    private Image image;
+    private boolean start = false;
+    private long lastTime = Integer.MIN_VALUE;
+    private float timess = 0;
+    private int index= 0;
+    private int deIndex = 1;
+    private CatmullRomSpline catmullRomSpline;
 
+    public GameView(){
         catmullRomSpline = new CatmullRomSpline();
         setDebug(true);
         setSize(Constant.width,720);
@@ -89,9 +99,7 @@ public class GameView extends Group {
         });
 
     }
-    Image image;
-    private boolean start = false;
-    private long lastTime = Integer.MIN_VALUE;
+
     private ClickListener imgaeListener = new ClickListener(){
         @Override
         public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -138,7 +146,6 @@ public class GameView extends Group {
         shapeDraw.setLine(controlPoint);
     }
 
-    CatmullRomSpline catmullRomSpline;
     public void jisuan(Array<Vector2> controlPoint){
 //        mathod1(controlPoint);
 //        mathod2(controlPoint);
@@ -238,7 +245,6 @@ public class GameView extends Group {
         }
     }
 
-
     public void save(){
         try {
             FileWriter stream = new FileWriter(new File("./text.txt"));
@@ -253,9 +259,6 @@ public class GameView extends Group {
         }
     }
 
-    private float timess = 0;
-    private int index= 0;
-    private int deIndex = 1;
     @Override
     public void act(float delta) {
         super.act(delta);

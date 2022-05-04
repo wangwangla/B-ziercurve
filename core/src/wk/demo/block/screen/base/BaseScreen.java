@@ -11,6 +11,7 @@ import wk.demo.block.Bziercurve;
 public class BaseScreen implements Screen {
     private Stage stage ;
     protected Bziercurve game;
+
     public BaseScreen(Bziercurve game){
         this.game = game;
     }

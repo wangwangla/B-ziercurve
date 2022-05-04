@@ -8,11 +8,9 @@ import com.badlogic.gdx.math.Vector2;
  * 内置bezierPX点存储计算
  */
 public class RBBezierUtil {
-
     static Vector2 bezierP0 = new Vector2(0, 0);
     static Vector2 bezierP1 = new Vector2(0, 0);
     static Vector2 bezierP2 = new Vector2(0, 0);
-
     static float ax, ay, bx, by, A, B, C, totalLength;
     static int step;
 
@@ -24,7 +22,6 @@ public class RBBezierUtil {
         bezierP2.x = $p2.x;
         bezierP2.y = $p2.y;
         // step = 30;
-
         ax = bezierP0.x - 2 * bezierP1.x + bezierP2.x;
         ay = bezierP0.y - 2 * bezierP1.y + bezierP2.y;
         bx = 2 * bezierP1.x - 2 * bezierP0.x;

@@ -4,11 +4,6 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.utils.NumberUtils;
 
 public class Vector3 {
-    //
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
     private static final long serialVersionUID = 3840054589595372522L;
     public float x;
     public float y;
