@@ -70,7 +70,6 @@ public class Bse extends Interpolation{
     public float apply (float a) {
         //我们使用下标取值  所以转换为int
         int v = (int)(a * 100.0F);
-        System.out.println(array.get(v).y);
         //工具的高为720，所以这里除以720
         return array.get(v).y/720;
     }

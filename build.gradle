@@ -6,7 +6,6 @@ buildscript {
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
         mavenCentral()
         jcenter()
-
         maven {
             url 'https://maven.google.com/'
             name 'Google'
@@ -25,12 +24,10 @@ buildscript {
 }
 allprojects {
     apply plugin: "idea"
-
     version = "1.0"
     ext {
         appName = "Word Stack"
     }
-    
     repositories {
         maven { url 'https://maven.aliyun.com/repository/public'}
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
@@ -40,8 +37,6 @@ allprojects {
         jcenter()
         maven { url "https://maven.google.com/" }
         maven { url "https://mvnrepository.com/" }
-//        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-//        maven { url "https://oss.sonatype.org/content/repositories/releases/" }
         flatDir {
             dirs 'libs'  // 申明本地库
         }

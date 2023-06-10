@@ -19,7 +19,6 @@ public class ShapeDraw extends Actor {
 
     public void setArray(Array<Vector2> array) {
         this.array = array;
-        System.out.println(array);
     }
 
     public Array<Vector2> line = new Array<>();
@@ -37,7 +36,6 @@ public class ShapeDraw extends Actor {
         sr.setTransformMatrix(batch.getTransformMatrix());
         Gdx.gl20.glLineWidth(1 / Constant.camera.zoom);
         sr.begin(ShapeRenderer.ShapeType.Line);
-        System.out.println(array.size);
         for (Vector2 vector2 : array) {
 //            sr.circle(vector2.x, vector2.y, 10);
             sr.rect(vector2.x,vector2.y,10,1);

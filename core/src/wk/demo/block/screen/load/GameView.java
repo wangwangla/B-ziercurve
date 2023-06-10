@@ -36,10 +36,13 @@ public class GameView extends Group {
     private int deIndex = 1;
     private CatmullRomSpline catmullRomSpline;
 
+    private Array<Vector2> controlPoint = new Array<Vector2>();
+    private Array<Image> array = new Array<>();
+    private Array<Vector2> array1 = new Array<>();
+    Vector2 sss = new Vector2(600,600);
+
     public GameView(){
         catmullRomSpline = new CatmullRomSpline();
-        setDebug(true);
-        setSize(Constant.width,720);
         defacultLine();
         this.addListener(new ClickListener(){
             @Override
@@ -63,40 +66,40 @@ public class GameView extends Group {
                 }
             }
         });
-
-        Image image = new Image(new Texture("white_squ.png"));
-        image.setPosition(getWidth() - 260,830);
-        addActor(image);
-
-
-        Image image1 = new Image(new Texture("white_squ.png"));
-        addActor(image1);
-        image1.setY(830);
+//
+//        Image image = new Image(new Texture("white_squ.png"));
+//        image.setPosition(getWidth() - 260,830);
+//        addActor(image);
 
 
-        Image image3 = new Image(new Texture("white_squ.png"));
-        addActor(image3);
-        image3.setY(830);
-        image3.setX(0,Align.center);
-        image3.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-               image1.setScale(1,1);
-            }
-        });
+//        Image image1 = new Image(new Texture("white_squ.png"));
+//        addActor(image1);
+//        image1.setY(830);
 
-        image.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-//                image1.addAction(Actions.scaleTo(3,3,3, new Bse(array1)));
-                BseInterpolation bseInterpolation = new BseInterpolation();
-                bseInterpolation.setCurve(0.25F, 0, 0.75F, 1F);
-                image1.addAction(Actions.scaleTo(3,3,3, bseInterpolation));
-                save();
-            }
-        });
+
+//        Image image3 = new Image(new Texture("white_squ.png"));
+//        addActor(image3);
+//        image3.setY(830);
+//        image3.setX(0,Align.center);
+//        image3.addListener(new ClickListener(){
+//            @Override
+//            public void clicked(InputEvent event, float x, float y) {
+//                super.clicked(event, x, y);
+//               image1.setScale(1,1);
+//            }
+//        });
+//
+//        image.addListener(new ClickListener(){
+//            @Override
+//            public void clicked(InputEvent event, float x, float y) {
+//                super.clicked(event, x, y);
+////                image1.addAction(Actions.scaleTo(3,3,3, new Bse(array1)));
+//                BseInterpolation bseInterpolation = new BseInterpolation();
+//                bseInterpolation.setCurve(0.25F, 0, 0.75F, 1F);
+//                image1.addAction(Actions.scaleTo(3,3,3, bseInterpolation));
+//                save();
+//            }
+//        });
 
     }
 
@@ -124,14 +127,10 @@ public class GameView extends Group {
         }
     };
 
-    private Array<Vector2> controlPoint = new Array<Vector2>();
-    private Array<Image> array = new Array<>();
-    private Array<Vector2> array1 = new Array<>();
-    Vector2 sss = new Vector2(360,0);
     public void defacultLine() {
         controlPoint.add(new Vector2(0, 0)); //起点
         controlPoint.add(sss);
-        controlPoint.add(new Vector2(710, 0)); //终点
+        controlPoint.add(new Vector2(1200, 1200)); //终点
         for (Vector2 vector2 : controlPoint) {
             Image image = new Image(new Texture("white_cir.png"));
             addActor(image);
@@ -149,8 +148,8 @@ public class GameView extends Group {
     public void jisuan(Array<Vector2> controlPoint){
 //        mathod1(controlPoint);
 //        mathod2(controlPoint);
-//        mathod3(controlPoint);
-        mathod4(controlPoint);
+        mathod3(controlPoint);
+//        mathod4(controlPoint);
     }
 
     private void mathod4(Array<Vector2> controlPoint) {
@@ -158,8 +157,6 @@ public class GameView extends Group {
         for (int i = 0; i < controlPoint.size; i++) {
             rp[i] = controlPoint.get(i);
         }
-
-
         Vector2 p0 = new Vector2(0, 0);
         Vector2 p1 = new Vector2(0, 0);
         Vector2 p2 = new Vector2(0, 0);
@@ -186,9 +183,6 @@ public class GameView extends Group {
                 p1.y++;
             }
             int steps = RBBezierUtil.init(p0, p1, p2, 1);
-            if (steps == 0) {
-//                LogU.log("steps:" + steps + " " + p0 + p1 + p2);
-            }
             for (int m = 1; m <= steps; ++m) {
                 float[] data = RBBezierUtil.getAnchorPointRB(m,false);
                 if (data != null) {
@@ -200,10 +194,6 @@ public class GameView extends Group {
 
     private void mathod3(Array<Vector2> controlPoint) {
         int steps = RBBezierUtil.init(controlPoint.get(0), controlPoint.get(1), controlPoint.get(2), 0.1F);
-        if (steps == 0) {
-//            LogU.log("steps:" + steps + " " + p0 + p1 + p2);
-        }
-//        Array<Vector2> array = new Array<>();
         for (int m = 1; m <= steps; ++m) {
             float[] data = RBBezierUtil.getAnchorPointRB(m,false);
             if (data != null) {
@@ -276,5 +266,9 @@ public class GameView extends Group {
                 index+=deIndex;
             }
         }
+    }
+
+    public Array<Vector2> getData() {
+        return array1;
     }
 }

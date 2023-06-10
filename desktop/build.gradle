@@ -6,7 +6,6 @@ sourceSets.main.java.srcDirs = [ "src/" ]
 project.ext.mainClassName = "com.kangwang.word.DesktopLauncher"
 project.ext.assetsDir = new File("../android/assets");
 
-
 task run(dependsOn: classes, type: JavaExec) {
     main = project.mainClassName
     classpath = sourceSets.main.runtimeClasspath
@@ -21,5 +20,4 @@ dependencies {
     compile name:'gdx-natives'
     compile name:'gdx-backend-lwjgl-natives'
     compile name:'gdx-tools'
-
 }
