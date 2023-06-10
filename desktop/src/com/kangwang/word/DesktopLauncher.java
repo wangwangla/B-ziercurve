@@ -12,8 +12,8 @@ public class DesktopLauncher {
     public static void main(String[] arg) {
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         config.title = "block";
-        config.height = 640;
-        config.width = 360;
+        config.height = 940;
+        config.width = 1360;
         new LwjglApplication(new Bziercurve(),config);
     }
 }

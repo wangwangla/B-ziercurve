@@ -52,7 +52,6 @@ public class CurveTimeline extends Interpolation {
         }
         float y = curves[i - 1];
         float v = y + (1 - y) * (percent - x) / (1 - x);
-        System.out.println(v);
         return v;
     }
 }
