@@ -46,9 +46,5 @@ public class LoadingScreen extends BaseScreen {
 
         ShowGroup showGroup = new ShowGroup(libraryGroup,bezierGroup);
         addActor(showGroup);
-
-
-//        GameView view = new GameView();
-//        addActor(view);
     }
 }

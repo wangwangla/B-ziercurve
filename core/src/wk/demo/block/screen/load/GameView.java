@@ -1,5 +1,6 @@
 package wk.demo.block.screen.load;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -40,7 +41,6 @@ public class GameView extends Group {
     private Array<Image> array = new Array<>();
     private Array<Vector2> array1 = new Array<>();
     Vector2 sss = new Vector2(600,600);
-
     public GameView(){
         catmullRomSpline = new CatmullRomSpline();
         defacultLine();
@@ -66,49 +66,9 @@ public class GameView extends Group {
                 }
             }
         });
-//
-//        Image image = new Image(new Texture("white_squ.png"));
-//        image.setPosition(getWidth() - 260,830);
-//        addActor(image);
-
-
-//        Image image1 = new Image(new Texture("white_squ.png"));
-//        addActor(image1);
-//        image1.setY(830);
-
-
-//        Image image3 = new Image(new Texture("white_squ.png"));
-//        addActor(image3);
-//        image3.setY(830);
-//        image3.setX(0,Align.center);
-//        image3.addListener(new ClickListener(){
-//            @Override
-//            public void clicked(InputEvent event, float x, float y) {
-//                super.clicked(event, x, y);
-//               image1.setScale(1,1);
-//            }
-//        });
-//
-//        image.addListener(new ClickListener(){
-//            @Override
-//            public void clicked(InputEvent event, float x, float y) {
-//                super.clicked(event, x, y);
-////                image1.addAction(Actions.scaleTo(3,3,3, new Bse(array1)));
-//                BseInterpolation bseInterpolation = new BseInterpolation();
-//                bseInterpolation.setCurve(0.25F, 0, 0.75F, 1F);
-//                image1.addAction(Actions.scaleTo(3,3,3, bseInterpolation));
-//                save();
-//            }
-//        });
-
     }
 
     private ClickListener imgaeListener = new ClickListener(){
-        @Override
-        public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-            return super.touchDown(event, x, y, pointer, button);
-        }
-
         @Override
         public void touchDragged(InputEvent event, float x, float y, int pointer) {
             super.touchDragged(event, x, y, pointer);
@@ -119,11 +79,6 @@ public class GameView extends Group {
                 controlPoint.add(array.get(i).getPosition());
             }
             jisuan(controlPoint);
-        }
-
-        @Override
-        public void clicked(InputEvent event, float x, float y) {
-            super.clicked(event, x, y);
         }
     };
 
@@ -146,10 +101,12 @@ public class GameView extends Group {
     }
 
     public void jisuan(Array<Vector2> controlPoint){
-//        mathod1(controlPoint);
-//        mathod2(controlPoint);
-        mathod3(controlPoint);
-//        mathod4(controlPoint);
+        Gdx.app.postRunnable(new Runnable() {
+            @Override
+            public void run() {
+                mathod3(controlPoint);
+            }
+        });
     }
 
     private void mathod4(Array<Vector2> controlPoint) {
@@ -246,25 +203,6 @@ public class GameView extends Group {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void act(float delta) {
-        super.act(delta);
-        timess += delta;
-        if (start) {
-            if (timess > 0.1F){
-                sss.y = sss.y +5;
-                array1.clear();
-                jisuan(controlPoint);
-                if (index>=array1.size-1)deIndex =-1;
-                if (index<=0)deIndex = 1;
-                Vector2 vector2 = array1.get(index);
-                image.setPosition(vector2.x,vector2.y,Align.center);
-                timess = 0;
-                index+=deIndex;
-            }
         }
     }
 

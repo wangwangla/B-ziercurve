@@ -11,7 +11,6 @@ import wk.demo.block.screen.load.GameView;
 
 public class BezierGroup extends Group {
     private GameView view;
-
     public BezierGroup(){
         Image beszi = new Image(new NinePatch(
                 new Texture("white_100x100.png"),
@@ -20,7 +19,6 @@ public class BezierGroup extends Group {
         beszi.setSize(1200,1200);
         beszi.setColor(0.2f,0.2f,0.2f,1);
         setSize(1200,1200);
-
         view = new GameView();
         view.setSize(1200,1200);
         addActor(view);

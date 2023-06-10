@@ -16,6 +16,7 @@ public class BeserAction extends Interpolation {
 
     @Override
     public float apply(float a) {
+        if (array.size<=0)return 0;
         int size = array.size;
         int v = (int) (size * a);
         if (v == 1) {
