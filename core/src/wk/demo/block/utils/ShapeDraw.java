@@ -1,6 +1,7 @@
 package wk.demo.block.utils;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector;
@@ -13,6 +14,8 @@ import wk.demo.block.constant.Constant;
 public class ShapeDraw extends Actor {
     ShapeRenderer sr;
     private Array<Vector2> array;
+    private Array<Vector2> arrayLib;
+
     public ShapeDraw() {
         this.sr = Constant.sr;
     }
@@ -31,11 +34,24 @@ public class ShapeDraw extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        drawArray(batch,array,Color.WHITE);
+        if (arrayLib!=null){
+            drawArray(batch,arrayLib,Color.RED);
+        }
+    }
+
+    public void setArrayLib(Array<Vector2> arrayLib) {
+        this.arrayLib = arrayLib;
+    }
+
+    private void drawArray(Batch batch, Array<Vector2> array,Color color) {
+        sr.setColor(color);
         batch.end();
         sr.setProjectionMatrix(batch.getProjectionMatrix());
         sr.setTransformMatrix(batch.getTransformMatrix());
         Gdx.gl20.glLineWidth(1 / Constant.camera.zoom);
         sr.begin(ShapeRenderer.ShapeType.Line);
+
         for (Vector2 vector2 : array) {
 //            sr.circle(vector2.x, vector2.y, 10);
             sr.rect(vector2.x,vector2.y,10,1);

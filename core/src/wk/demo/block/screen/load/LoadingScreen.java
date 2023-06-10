@@ -33,6 +33,7 @@ public class LoadingScreen extends BaseScreen {
                         Gdx.files.internal("Bahnschrift-Regular_40_1.png"),false);
             }
         });
+        label.setAlignment(Align.center);
         addActor(label);
         label.setText("cubic-bezier(.02  .97    .97   .1)");
         label.pack();
@@ -40,8 +41,9 @@ public class LoadingScreen extends BaseScreen {
 
         BezierGroup bezierGroup = new BezierGroup();
         addActor(bezierGroup);
+        bezierGroup.setLabel(label);
 
-        LibraryGroup libraryGroup = new LibraryGroup();
+        LibraryGroup libraryGroup = new LibraryGroup(bezierGroup);
         addActor(libraryGroup);
 
         ShowGroup showGroup = new ShowGroup(libraryGroup,bezierGroup);

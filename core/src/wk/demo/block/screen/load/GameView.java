@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
@@ -40,14 +41,13 @@ public class GameView extends Group {
     private Array<Vector2> controlPoint = new Array<Vector2>();
     private Array<Image> array = new Array<>();
     private Array<Vector2> array1 = new Array<>();
-    Vector2 sss = new Vector2(600,600);
+    Vector2 sss = new Vector2(300,300);
     public GameView(){
         catmullRomSpline = new CatmullRomSpline();
         defacultLine();
         this.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (y>720)return;
                 super.clicked(event, x, y);
                 long l = System.currentTimeMillis() - lastTime;
                 lastTime = System.currentTimeMillis();
@@ -56,7 +56,9 @@ public class GameView extends Group {
                     addActor(image);
                     image.setPosition(x,y);
                     image.addListener(imgaeListener);
+                    Image image1 = array.removeIndex(array.size - 1);
                     array.add(image);
+                    array.add(image1);
                     array1.clear();
                     controlPoint.clear();
                     for (int i = 0; i < array.size; i++) {
@@ -85,7 +87,8 @@ public class GameView extends Group {
     public void defacultLine() {
         controlPoint.add(new Vector2(0, 0)); //起点
         controlPoint.add(sss);
-        controlPoint.add(new Vector2(1200, 1200)); //终点
+        controlPoint.add(sss);
+        controlPoint.add(new Vector2(1200/2.0f-20, 1200/2.0f-20)); //终点
         for (Vector2 vector2 : controlPoint) {
             Image image = new Image(new Texture("white_cir.png"));
             addActor(image);
@@ -104,9 +107,18 @@ public class GameView extends Group {
         Gdx.app.postRunnable(new Runnable() {
             @Override
             public void run() {
-                mathod3(controlPoint);
+                StringBuilder builder = new StringBuilder();
+                builder.append("point :");
+                for (Vector2 vector2 : controlPoint) {
+                    builder.append(vector2.x+" "+vector2.y);
+                }
+                label.setText(builder.toString());
+                mathod4(controlPoint);
             }
         });
+
+
+//        mathod4(controlPoint);
     }
 
     private void mathod4(Array<Vector2> controlPoint) {
@@ -208,5 +220,21 @@ public class GameView extends Group {
 
     public Array<Vector2> getData() {
         return array1;
+    }
+
+    Array<Vector2> array2 = new Array<>();
+    public void drawLibary() {
+        array2.clear();
+        for (int i = 0; i < 100; i++) {
+            float v = i/100.0f;
+            float apply = Constant.interpolation.apply(v);
+            array2.add(new Vector2(v*600.0f,apply*600.0f));
+        }
+        shapeDraw.setArrayLib(array2);
+    }
+
+    private Label label;
+    public void setLabel(Label label) {
+        this.label = label;
     }
 }

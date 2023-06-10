@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 
 import wk.demo.block.action.BeserAction;
+import wk.demo.block.constant.Constant;
 
 public class ShowGroup extends Group {
     private LibraryGroup libraryGroup;
@@ -20,8 +21,8 @@ public class ShowGroup extends Group {
                 new Texture("white_100x100.png"),
                 20,20,20,20));
         addActor(show);
-        show.setSize(300,1200);
-        setX(1500);
+        show.setSize(300,1200/2.0f);
+        setX(1500/2.0f);
         setSize(show.getWidth(),show.getHeight());
         show.setColor(0.2f,0.2f,0.2f,1);
 
@@ -40,18 +41,18 @@ public class ShowGroup extends Group {
                 testBlackTwo.addAction(
                         Actions.moveToAligned(
                                 testBlackTwo.getX(Align.center),
-                                1200,
-                                Align.center,
+                                1200/2.0f,
+                                Align.top,
                                 5.3f,
-                                Interpolation.linear
+                                Constant.interpolation
                         )
                 );
                 testBlackOne.setY(0);
                 testBlackOne.addAction(
                         Actions.moveToAligned(
                                 testBlackOne.getX(Align.center),
-                                1200,
-                                Align.center,
+                                1200/2.0f,
+                                Align.top,
                                 5.3f,
                                 new BeserAction(bezierGroup.getPoint())
                         )

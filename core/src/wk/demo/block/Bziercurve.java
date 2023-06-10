@@ -27,7 +27,7 @@ public class Bziercurve extends Game {
         batch = new CpuSpriteBatch();
         Constant.viewport
                 = viewport
-                = new ExtendViewport(1720,1280);
+                = new ExtendViewport(2320/2.0f,1280/2.0f);
         Constant.camera = (OrthographicCamera) viewport.getCamera();
         resize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         Constant.assetManager = new AssetManager();

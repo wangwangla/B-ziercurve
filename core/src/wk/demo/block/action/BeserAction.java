@@ -24,6 +24,6 @@ public class BeserAction extends Interpolation {
         }
         Vector2 vector2 = array.get(v);
         System.out.println(vector2.y+"-------------------------");
-        return vector2.y/1200.0f;
+        return vector2.y/600.0f;
     }
 }

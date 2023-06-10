@@ -4,6 +4,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class Constant {
@@ -15,4 +16,6 @@ public class Constant {
     public static Viewport viewport;
     public static OrthographicCamera camera;
     public static ShapeRenderer sr;
+
+    public static Interpolation interpolation;
 }
