@@ -59,7 +59,6 @@ public class GameView extends Group {
                     Image image1 = array.removeIndex(array.size - 1);
                     array.add(image);
                     array.add(image1);
-                    array1.clear();
                     controlPoint.clear();
                     for (int i = 0; i < array.size; i++) {
                         controlPoint.add(array.get(i).getPosition());
@@ -75,7 +74,6 @@ public class GameView extends Group {
         public void touchDragged(InputEvent event, float x, float y, int pointer) {
             super.touchDragged(event, x, y, pointer);
             event.getTarget().setPosition(event.getStageX(),event.getStageY());
-            array1.clear();
             controlPoint.clear();
             for (int i = 0; i < array.size; i++) {
                 controlPoint.add(array.get(i).getPosition());
@@ -129,7 +127,7 @@ public class GameView extends Group {
         Vector2 p0 = new Vector2(0, 0);
         Vector2 p1 = new Vector2(0, 0);
         Vector2 p2 = new Vector2(0, 0);
-
+        Array<Vector2> array3 = new Array<>();
         for (int j = 0; j < rp.length - 2; ++j) {
             if (j == 0) {
                 p0.x = rp[0].x;
@@ -155,10 +153,12 @@ public class GameView extends Group {
             for (int m = 1; m <= steps; ++m) {
                 float[] data = RBBezierUtil.getAnchorPointRB(m,false);
                 if (data != null) {
-                    array1.add(new Vector2(data[0],data[1]));
+                    array3.add(new Vector2(data[0],data[1]));
                 }
             }
         }
+        array1.clear();
+        array1.addAll(array3);
     }
 
     private void mathod3(Array<Vector2> controlPoint) {
