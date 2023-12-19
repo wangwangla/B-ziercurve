@@ -83,10 +83,19 @@ public class GameView extends Group {
     };
 
     public void defacultLine() {
+
+
+
+
         controlPoint.add(new Vector2(0, 0)); //起点
-        controlPoint.add(sss);
-        controlPoint.add(sss);
+        controlPoint.add(new Vector2(100,200));
+        controlPoint.add(new Vector2(800,10));
         controlPoint.add(new Vector2(1200/2.0f-20, 1200/2.0f-20)); //终点
+
+
+
+
+
         for (Vector2 vector2 : controlPoint) {
             Image image = new Image(new Texture("white_cir.png"));
             addActor(image);

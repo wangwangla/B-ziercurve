@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.Array;
 import wk.demo.block.constant.Constant;
 
 public class ShapeDraw extends Actor {
-    ShapeRenderer sr;
+    private ShapeRenderer sr;
     private Array<Vector2> array;
     private Array<Vector2> arrayLib;
 

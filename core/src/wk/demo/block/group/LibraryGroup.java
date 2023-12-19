@@ -1,5 +1,6 @@
 package wk.demo.block.group;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -37,7 +38,7 @@ public class LibraryGroup extends Group {
             for (int i = 0; i < interpolationArrayMap.size; i++) {
                 String key = interpolationArrayMap.getKeyAt(i);
                 Label label = new Label(key,new Label.LabelStyle(){{
-                    font = new BitmapFont();
+                    font = new BitmapFont(Gdx.files.internal("Bahnschrift-Regular_40_1.fnt"));
                 }});
                 label.pack();
                 add(label);
