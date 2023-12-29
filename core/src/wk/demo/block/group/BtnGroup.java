@@ -19,11 +19,16 @@ import wk.demo.block.constant.BserType;
  */
 public class BtnGroup extends Group {
     public BtnGroup(String name){
-        setSize(400,200);
+        this(name,400,200);
+    }
+
+    public BtnGroup(String name,float width,float height){
+        setSize(width,height);
         Image bgImage = new Image(new NinePatch(
                 Asset.getAsset().getTexture("white_100x100.png"),
                 3,3,3,3));
         addActor(bgImage);
+        bgImage.setDebug(true);
         setOrigin(Align.center);
         bgImage.setSize(getWidth(),getHeight());
         Label label = new Label("",new Label.LabelStyle(){{
@@ -35,6 +40,5 @@ public class BtnGroup extends Group {
         label.setText(name);
         label.setFontScale(0.7f);
         label.setColor(Color.BLACK);
-
     }
 }

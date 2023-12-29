@@ -26,6 +26,7 @@ public class BezierGroup extends Group {
         addActor(view);
         view.init();
         setPosition(50,Constant.GAMEHIGHT/2.0f,Align.left);
+
     }
 
     public Array<Vector2> getPoint(){

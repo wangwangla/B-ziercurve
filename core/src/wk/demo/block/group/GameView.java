@@ -31,7 +31,6 @@ public class GameView extends Group {
     private Image posImage;
     private Array<Vector2> controlPoint = new Array<Vector2>();
     private Array<Image> array = new Array<>();
-
     private Vector2 vector2;
     private BaseBzer baseBzer;
 

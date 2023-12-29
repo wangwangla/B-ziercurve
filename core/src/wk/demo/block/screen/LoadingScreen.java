@@ -6,6 +6,9 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.kw.gdx.BaseGame;
 import com.kw.gdx.asset.Asset;
@@ -57,6 +60,10 @@ public class LoadingScreen extends BaseScreen {
                     setScreen(CureScreen.class);
                 }
             });
+
         }});
+
+
+
     }
 }

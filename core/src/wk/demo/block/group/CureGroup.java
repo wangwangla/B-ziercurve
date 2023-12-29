@@ -17,9 +17,12 @@ import wk.demo.block.screen.utils.CurveTimeline;
  * @Date 2023/12/29 17:04
  */
 public class CureGroup extends Group {
-    Array<Vector2> vector2s = new Array<>();
-    ShapeRenderer renderer;
-    public CureGroup(){
+    private Array<Vector2> vector2s = new Array<>();
+    private ShapeRenderer renderer;
+    private CurveTimeline curveTimeline;
+    private Vector2 lastPosition;
+
+    public CureGroup(float c1,float c2,float c3,float c4){
         setSize(Constant.GAMEWIDTH/2.0f,Constant.GAMEWIDTH/2.0f);
         Image image = new Image(   Asset.getAsset().getTexture("white_100x100.png"));
         addActor(image);
@@ -27,21 +30,17 @@ public class CureGroup extends Group {
         image.setColor(Color.BLACK);
 
         renderer = new ShapeRenderer();
-        CurveTimeline curveTimeline = new CurveTimeline();
-        curveTimeline.setCurve(0,0,1.0f,1.0f);
-        for (int i = 0; i < 100; i++) {
-            float curvePercent = curveTimeline.getCurvePercent(i / 100.0f);
-            vector2s.add(new Vector2(i/100.0f * getWidth(),curvePercent* getHeight()));
-        }
+        curveTimeline = new CurveTimeline();
+        update(c1,c2,c3,c4);
     }
 
-    Vector2 lastPosition;
+
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch,parentAlpha);
         this.applyTransform(batch, this.computeTransform());
-        batch.flush();
+        batch.end();
         renderer.setProjectionMatrix(batch.getProjectionMatrix());
         renderer.setTransformMatrix(batch.getTransformMatrix());
         renderer.begin(ShapeRenderer.ShapeType.Line);
@@ -56,6 +55,16 @@ public class CureGroup extends Group {
         }
         lastPosition = null;
         renderer.end();
+        batch.begin();
         this.resetTransform(batch);
+    }
+
+    public void update(float num1, float num2, float num3, float num4) {
+        curveTimeline.setCurve(num1,num2,num3,num4);
+        vector2s.clear();
+        for (int i = 0; i < 100; i++) {
+            float curvePercent = curveTimeline.getCurvePercent(i / 100.0f);
+            vector2s.add(new Vector2(i/100.0f * getWidth(),curvePercent* getHeight()));
+        }
     }
 }
