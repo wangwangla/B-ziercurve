@@ -12,7 +12,7 @@ public class ShapeDraw extends Actor {
     private Array<Vector2> array;
     private Array<Vector2> arrayLib;
     private Vector2 lastPosition = null;
-    public Array<Vector2> line = new Array<>();
+    public Array<Vector2> line;
 
     public ShapeDraw() {
         this.sr = new ShapeRenderer();

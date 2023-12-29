@@ -10,8 +10,6 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.kw.gdx.constant.Constant;
 
-import wk.demo.block.screen.load.GameView;
-
 public class BezierGroup extends Group {
     private GameView view;
     public BezierGroup(){
@@ -40,5 +38,9 @@ public class BezierGroup extends Group {
 
     public void setLabel(Label label) {
         view.setLabel(label);
+    }
+
+    public void update() {
+        view.update();
     }
 }
