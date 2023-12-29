@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import wk.demo.block.utils.Vector3;
+
 public class CatmullRomSpline implements Serializable {
     private static final long serialVersionUID = -3290464799289771451L;
     private List<Vector3> controlPoints = new ArrayList();

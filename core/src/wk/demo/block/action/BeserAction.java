@@ -4,11 +4,12 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
 import com.badlogic.gdx.utils.Array;
+import com.kw.gdx.constant.Constant;
 
 import wk.demo.block.group.BezierGroup;
 
 public class BeserAction extends Interpolation {
-    public Array<Vector2> array = new Array<>();
+    public Array<Vector2> array;
 
     public BeserAction(Array<Vector2> array){
         this.array = array;
@@ -23,6 +24,6 @@ public class BeserAction extends Interpolation {
             v = size - 1;
         }
         Vector2 vector2 = array.get(v);
-        return vector2.y/600.0f;
+        return vector2.y/(Constant.GAMEWIDTH/2 - 250);
     }
 }

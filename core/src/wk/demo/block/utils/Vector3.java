@@ -1,7 +1,12 @@
-package wk.demo.block.screen.utils;
+package wk.demo.block.utils;
 
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.utils.NumberUtils;
+
+/**
+ * @Auther jian xian si qi
+ * @Date 2023/12/29 16:01
+ */
 
 public class Vector3 {
     private static final long serialVersionUID = 3840054589595372522L;

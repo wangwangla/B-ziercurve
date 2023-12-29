@@ -15,9 +15,12 @@ task run(dependsOn: classes, type: JavaExec) {
 }
 
 dependencies {
-    compile project(':core')
-    compile name: 'gdx-backend-lwjgl'
-    compile name:'gdx-natives'
-    compile name:'gdx-backend-lwjgl-natives'
-    compile name:'gdx-tools'
+    implementation project(':core')
+    implementation files('libs/gdx-backend-lwjgl.jar')
+    implementation files('libs/gdx-backend-lwjgl-natives.jar')
+    implementation files('libs/gdx-natives.jar')
+    implementation files('libs/gdx-tools.jar')
+    implementation 'com.github.wangGame.LibGdxTool:libGdx:release1.0.1'
+    //自己的工具包
+    implementation 'com.github.wangGame.LibGdxTool:libGdxLib:release1.0.1'
 }

@@ -15,22 +15,21 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ArrayMap;
 
-import wk.demo.block.constant.Constant;
+import wk.demo.block.constant.BseInterpolation;
 
 public class LibraryGroup extends Group {
     private ArrayMap<String,Interpolation> interpolationArrayMap;
-    private BezierGroup bezierGroup;
+
     public LibraryGroup(BezierGroup bezierGroup){
-        this.bezierGroup = bezierGroup;
+        setDebug(true);
         initData();
-        Constant.interpolation = Interpolation.linear;
+        BseInterpolation.interpolation = Interpolation.linear;
         bezierGroup.drawLibary();
         Image library = new Image(new NinePatch(
                 new Texture("white_100x100.png"),
                 20,20,20,20));
         addActor(library);
-        library.setSize(300/2.0f,1200/2.0f);
-        setX(1220/2.0f);
+        library.setSize(300,1200);
         library.setColor(Color.BLACK);
         setSize(library.getWidth(),library.getHeight());
 
@@ -47,7 +46,7 @@ public class LibraryGroup extends Group {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        Constant.interpolation = interpolationArrayMap.get(key);
+                        BseInterpolation.interpolation = interpolationArrayMap.get(key);
                         bezierGroup.drawLibary();
                     }
                 });

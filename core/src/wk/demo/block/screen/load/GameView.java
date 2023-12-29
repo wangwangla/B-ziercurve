@@ -5,12 +5,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
+import com.kw.gdx.constant.Constant;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,31 +17,26 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-import wk.demo.block.BseInterpolation;
 import wk.demo.block.bezier.RBBezierUtil;
-import wk.demo.block.constant.Constant;
+import wk.demo.block.constant.BseInterpolation;
 import wk.demo.block.screen.utils.CatmullRomSpline;
-import wk.demo.block.screen.utils.Vector3;
 import wk.demo.block.utils.ShapeDraw;
+import wk.demo.block.utils.Vector3;
 
 /**
  * 展示线
  */
 public class GameView extends Group {
     private ShapeDraw shapeDraw;
-    private Image image;
-    private boolean start = false;
     private long lastTime = Integer.MIN_VALUE;
-    private float timess = 0;
-    private int index= 0;
-    private int deIndex = 1;
     private CatmullRomSpline catmullRomSpline;
-
+    private Image posImage;
     private Array<Vector2> controlPoint = new Array<Vector2>();
     private Array<Image> array = new Array<>();
     private Array<Vector2> array1 = new Array<>();
-    Vector2 sss = new Vector2(300,300);
-    public GameView(){
+    private Vector2 vector2;
+
+    public void init(){
         catmullRomSpline = new CatmullRomSpline();
         defacultLine();
         this.addListener(new ClickListener(){
@@ -52,12 +46,12 @@ public class GameView extends Group {
                 long l = System.currentTimeMillis() - lastTime;
                 lastTime = System.currentTimeMillis();
                 if (l<1000){
-                    Image image = new Image(new Texture("white_cir.png"));
-                    addActor(image);
-                    image.setPosition(x,y);
-                    image.addListener(imgaeListener);
+                    posImage = new Image(new Texture("white_cir.png"));
+                    addActor(posImage);
+                    posImage.setPosition(x,y);
+                    posImage.addListener(imgaeListener);
                     Image image1 = array.removeIndex(array.size - 1);
-                    array.add(image);
+                    array.add(posImage);
                     array.add(image1);
                     controlPoint.clear();
                     for (int i = 0; i < array.size; i++) {
@@ -73,7 +67,9 @@ public class GameView extends Group {
         @Override
         public void touchDragged(InputEvent event, float x, float y, int pointer) {
             super.touchDragged(event, x, y, pointer);
-            event.getTarget().setPosition(event.getStageX(),event.getStageY());
+            vector2 = new Vector2(event.getStageX(), event.getStageY());
+            stageToLocalCoordinates(vector2);
+            event.getTarget().setPosition(vector2.x,vector2.y);
             controlPoint.clear();
             for (int i = 0; i < array.size; i++) {
                 controlPoint.add(array.get(i).getPosition());
@@ -84,15 +80,10 @@ public class GameView extends Group {
 
     public void defacultLine() {
 
-
-
-
         controlPoint.add(new Vector2(0, 0)); //起点
         controlPoint.add(new Vector2(100,200));
         controlPoint.add(new Vector2(800,10));
-        controlPoint.add(new Vector2(1200/2.0f-20, 1200/2.0f-20)); //终点
-
-
+        controlPoint.add(new Vector2(getWidth(), getHeight())); //终点
 
 
 
@@ -115,17 +106,26 @@ public class GameView extends Group {
             @Override
             public void run() {
                 StringBuilder builder = new StringBuilder();
-                builder.append("point :");
-                for (Vector2 vector2 : controlPoint) {
-                    builder.append(vector2.x+" "+vector2.y);
+                builder.append("cubic-bezier( ");
+                for (int i = 0; i < controlPoint.size; i++) {
+                    Vector2 vector2 = controlPoint.get(i);
+                    builder.append("("+formatFloat(vector2.x)+","+formatFloat(vector2.y)+")");
+                    if (i == controlPoint.size-1) {
+                        builder.append(")");
+                    }else {
+                        builder.append(";");
+                    }
                 }
                 label.setText(builder.toString());
                 mathod4(controlPoint);
             }
         });
 
+    }
 
-//        mathod4(controlPoint);
+    public String formatFloat(float v){
+        System.out.println(v);
+        return String.format("%.2f",v);
     }
 
     private void mathod4(Array<Vector2> controlPoint) {
@@ -236,8 +236,8 @@ public class GameView extends Group {
         array2.clear();
         for (int i = 0; i < 100; i++) {
             float v = i/100.0f;
-            float apply = Constant.interpolation.apply(v);
-            array2.add(new Vector2(v*600.0f,apply*600.0f));
+            float apply = BseInterpolation.interpolation.apply(v);
+            array2.add(new Vector2(v*(Constant.GAMEWIDTH/2 - 250),apply*(Constant.GAMEWIDTH/2 - 250)));
         }
         shapeDraw.setArrayLib(array2);
     }

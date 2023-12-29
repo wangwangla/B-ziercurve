@@ -6,23 +6,28 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
+import com.kw.gdx.constant.Constant;
 
 import wk.demo.block.screen.load.GameView;
 
 public class BezierGroup extends Group {
     private GameView view;
     public BezierGroup(){
-        Image beszi = new Image(new NinePatch(
+        setDebug(true);
+        Image besziBg = new Image(new NinePatch(
                 new Texture("white_100x100.png"),
                 20,20,20,20));
-        addActor(beszi);
-        beszi.setSize(1200/2.0f,1200/2.0f);
-        beszi.setColor(0.2f,0.2f,0.2f,1);
-        setSize(1200/2.0f,1200/2.0f);
+        addActor(besziBg);
+        besziBg.setSize(Constant.GAMEWIDTH/2 - 250,Constant.GAMEWIDTH/2 - 250);
+        besziBg.setColor(0.2f,0.2f,0.2f,1);
+        setSize(besziBg.getWidth(),besziBg.getHeight());
         view = new GameView();
-        view.setSize(1200/2.0f,1200/2.0f);
+        view.setSize(getWidth(),getHeight());
         addActor(view);
+        view.init();
+        setPosition(50,Constant.GAMEHIGHT/2.0f,Align.left);
     }
 
     public Array<Vector2> getPoint(){
