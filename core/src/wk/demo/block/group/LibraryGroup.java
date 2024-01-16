@@ -21,7 +21,6 @@ public class LibraryGroup extends Group {
     private ArrayMap<String,Interpolation> interpolationArrayMap;
 
     public LibraryGroup(BezierGroup bezierGroup){
-        setDebug(true);
         initData();
         BseInterpolation.interpolation = Interpolation.linear;
         bezierGroup.drawLibary();

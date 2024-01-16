@@ -38,7 +38,8 @@ public class LoadingScreen extends BaseScreen {
                 3,3,3,3));
         addActor(bgImage);
         bgImage.setSize(Constant.GAMEWIDTH,Constant.GAMEHIGHT);
-        addActor(new Table(){{
+        Table table;
+        addActor(table = new Table(){{
             BtnGroup bzer= new BtnGroup("Bzer");
             BtnGroup cure = new BtnGroup("Cure");
             add(bzer);
@@ -63,7 +64,7 @@ public class LoadingScreen extends BaseScreen {
 
         }});
 
-
+        table.setPosition(Constant.GAMEWIDTH/2.0f,Constant.GAMEHIGHT/2.0f,Align.center);
 
     }
 }

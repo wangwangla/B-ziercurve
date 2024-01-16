@@ -13,7 +13,6 @@ import com.kw.gdx.constant.Constant;
 public class BezierGroup extends Group {
     private GameView view;
     public BezierGroup(){
-        setDebug(true);
         Image besziBg = new Image(new NinePatch(
                 new Texture("white_100x100.png"),
                 20,20,20,20));

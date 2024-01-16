@@ -28,7 +28,6 @@ public class BtnGroup extends Group {
                 Asset.getAsset().getTexture("white_100x100.png"),
                 3,3,3,3));
         addActor(bgImage);
-        bgImage.setDebug(true);
         setOrigin(Align.center);
         bgImage.setSize(getWidth(),getHeight());
         Label label = new Label("",new Label.LabelStyle(){{

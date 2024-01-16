@@ -38,7 +38,6 @@ public class CureScreen extends BaseScreen {
         group = new CureGroup(0,0,1.0f,1.0f);
         addActor(group);
         group.setPosition(Constant.GAMEWIDTH/2.0f,Constant.GAMEHIGHT/2.0f, Align.center);
-        group.setDebug(true);
         numGroup = new Table();
         numGroup.addActor(createTextField("num1",0));
         numGroup.addActor(createTextField("num2",1));
@@ -46,11 +45,9 @@ public class CureScreen extends BaseScreen {
         numGroup.addActor(createTextField("num4",3));
         addActor(numGroup);
         numGroup.setSize(4*500+50 * 3,100);
-        numGroup.setDebug(true);
         numGroup.setPosition(Constant.GAMEWIDTH/2.0f,Constant.GAMEHIGHT - 50,Align.top);
         BtnGroup ok = new BtnGroup("OK",100,100);
         addActor(ok);
-        ok.setDebug(true);
         ok.setPosition(Constant.GAMEWIDTH/2.0f,50,Align.bottom);
         ok.addListener(new OrdinaryButtonListener(){
             @Override
@@ -95,7 +92,6 @@ public class CureScreen extends BaseScreen {
         });
         field.setName(name);
         field.setSize(500,100);
-        field.setDebug(true);
         field.setMessageText("Enter your username");
         field.setX(i*550);
         if (i == 0 || i == 1){
