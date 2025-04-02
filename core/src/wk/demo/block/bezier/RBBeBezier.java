@@ -41,7 +41,7 @@ public class RBBeBezier extends BaseBzer{
                 p1.x++;
                 p1.y++;
             }
-            int steps = RBBezierUtil.init(p0, p1, p2, 1);
+            int steps = RBBezierUtil.init(p0, p1, p2, 40);
             for (int m = 1; m <= steps; ++m) {
                 float[] data = RBBezierUtil.getAnchorPointRB(m,false);
                 if (data != null) {
@@ -51,5 +51,6 @@ public class RBBeBezier extends BaseBzer{
         }
         finalV2.clear();
         finalV2.addAll(array3);
+        System.out.println(array3.size+"  size =============================");
     }
 }

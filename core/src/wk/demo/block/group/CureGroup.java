@@ -66,5 +66,7 @@ public class CureGroup extends Group {
             float curvePercent = curveTimeline.getCurvePercent(i / 100.0f);
             vector2s.add(new Vector2(i/100.0f * getWidth(),curvePercent* getHeight()));
         }
+
+
     }
 }

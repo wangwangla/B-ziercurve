@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 
 public class CurveTimeline extends Interpolation {
-    //这个的大小为18
+    //这个的大小为18  spine为19.第一位用来表示属于那种曲线的
     private float[] curves = new float[18];
 
     @Override
@@ -31,6 +31,10 @@ public class CurveTimeline extends Interpolation {
             ddfy += dddfy;
             x += dfx;
             y += dfy;
+        }
+
+        for (int i1 = 0; i1 < curves.length; i1++) {
+            System.out.println(curves[i1]);
         }
     }
 

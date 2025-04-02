@@ -82,7 +82,7 @@ public class GameView extends Group {
     public void defacultLine() {
         controlPoint.add(new Vector2(0, 0)); //起点
         controlPoint.add(new Vector2(100,200));
-        controlPoint.add(new Vector2(800,10));
+
         controlPoint.add(new Vector2(getWidth(), getHeight())); //终点
         for (Vector2 vector2 : controlPoint) {
             Image image = new Image(new Texture("white_cir.png"));
@@ -91,7 +91,7 @@ public class GameView extends Group {
             image.addListener(imgaeListener);
             array.add(image);
         }
-       jisuan(controlPoint);
+        jisuan(controlPoint);
         shapeDraw = new ShapeDraw();
         addActor(shapeDraw);
         shapeDraw.setArray(baseBzer.getFinalV2());

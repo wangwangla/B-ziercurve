@@ -1,6 +1,7 @@
 package wk.demo.block.screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
@@ -32,6 +33,7 @@ public class MainScreen extends BaseScreen {
         pointData.setAlignment(Align.center);
         addActor(pointData);
         pointData.setText("cubic-bezier(.02  .97    .97   .1)");
+        pointData.setColor(Color.CYAN);
         pointData.pack();
         pointData.setPosition(com.kw.gdx.constant.Constant.GAMEWIDTH /2, Constant.GAMEHIGHT- 10,Align.top);
 
