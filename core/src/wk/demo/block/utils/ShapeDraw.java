@@ -44,11 +44,11 @@ public class ShapeDraw extends Actor {
         batch.end();
         sr.setProjectionMatrix(batch.getProjectionMatrix());
         sr.setTransformMatrix(batch.getTransformMatrix());
-        sr.begin(ShapeRenderer.ShapeType.Filled);
+        sr.begin(ShapeRenderer.ShapeType.Line);
         lastPosition = null;
         for (Vector2 vector2 : array) {
             if (lastPosition!=null){
-                sr.rectLine(vector2,lastPosition,2);
+                sr.rectLine(vector2,lastPosition,1);
             }
             lastPosition = vector2;
         }

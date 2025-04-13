@@ -45,9 +45,12 @@ public class LoadingScreen extends BaseScreen {
         addActor(table = new Table(){{
             BtnGroup bzer= new BtnGroup("Bzer");
             BtnGroup cure = new BtnGroup("Cure");
+            BtnGroup nB = new BtnGroup("NB");
             add(bzer);
             row();
             add(cure);
+            row();
+            add(nB);
             pack();
 
             bzer.addListener(new OrdinaryButtonListener(){
@@ -62,6 +65,13 @@ public class LoadingScreen extends BaseScreen {
                 public void clicked(InputEvent event, float x, float y) {
                     super.clicked(event, x, y);
                     setScreen(CureScreen.class);
+                }
+            });
+            nB.addListener(new OrdinaryButtonListener(){
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    super.clicked(event, x, y);
+                    setScreen(NBScreen.class);
                 }
             });
 
