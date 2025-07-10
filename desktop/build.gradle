@@ -20,7 +20,7 @@ dependencies {
     implementation files('libs/gdx-backend-lwjgl-natives.jar')
     implementation files('libs/gdx-natives.jar')
     implementation files('libs/gdx-tools.jar')
-    implementation 'com.github.wangGame.LibGdxTool:libGdx:release+'
+    implementation 'com.github.wangGame.LibGdxTool:libGdx:release1.0.1'
     //自己的工具包
-    implementation 'com.github.wangGame.LibGdxTool:libGdxLib:release+'
+    implementation 'com.github.wangGame.LibGdxTool:libGdxLib:release1.0.1'
 }
