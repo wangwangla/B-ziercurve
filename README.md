@@ -1,5 +1,23 @@
 # 贝塞尔曲线
 
+## 可视工具
+
+- 主界面 
+
+![img.png](doc/img/img.png)
+
+- 三种方式
+
+![img_1.png](doc/img/img_1.png)
+
+- 3.x版本的spine曲线
+
+![img_2.png](doc/img/img_2.png)
+
+- 可以写运动轨迹
+
+![img_3.png](doc/img/img_3.png)
+
 ## 使用
 
 Actions动画  求百分比
