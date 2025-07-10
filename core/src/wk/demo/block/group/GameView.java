@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.kw.gdx.constant.Constant;
 
@@ -56,7 +57,7 @@ public class GameView extends Group {
                     array.add(image1);
                     controlPoint.clear();
                     for (int i = 0; i < array.size; i++) {
-                        controlPoint.add(array.get(i).getPosition());
+                        controlPoint.add(new Vector2(array.get(i).getX(Align.center),array.get(i).getY(Align.center)));
                     }
                     jisuan(controlPoint);
                 }
@@ -73,7 +74,8 @@ public class GameView extends Group {
             event.getTarget().setPosition(vector2.x,vector2.y);
             controlPoint.clear();
             for (int i = 0; i < array.size; i++) {
-                controlPoint.add(array.get(i).getPosition());
+//                controlPoint.add(array.get(i).getPosition());
+                controlPoint.add(new Vector2(array.get(i).getX(Align.center),array.get(i).getY(Align.center)));
             }
             jisuan(controlPoint);
         }
